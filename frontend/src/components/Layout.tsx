@@ -2,6 +2,7 @@ import React from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { useAuth } from "../contexts/AuthContext";
+import { GlobalAlerts } from "./GlobalAlerts";
 
 const navItems = [
   { to: "/", label: "pages.dashboard" },
@@ -18,6 +19,7 @@ export const Layout: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50">
+      <GlobalAlerts />
       <header className="flex items-center justify-between px-4 py-3 bg-white shadow-sm">
         <Link to="/" className="text-xl font-semibold text-primary">
           SafeHub

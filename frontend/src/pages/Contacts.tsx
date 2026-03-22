@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { getProfile, addContact, updateContact, deleteContact, EmergencyContact } from "../services/user";
+import { getProfile, addContact, deleteContact, EmergencyContact } from "../services/user";
 
 export const Contacts: React.FC = () => {
   const { t } = useTranslation();
@@ -24,8 +24,9 @@ export const Contacts: React.FC = () => {
 
   const handleAdd = async () => {
     if (!newContact.name || !newContact.relation || !newContact.phone) return;
-    const added = await addContact(newContact);
-    setContacts((prev) => [...prev, added]);
+    // Backend returns the full updated contacts array — replace state outright
+    const updatedContacts = await addContact(newContact);
+    setContacts(updatedContacts);
     setNewContact({ name: "", relation: "", phone: "" });
   };
 

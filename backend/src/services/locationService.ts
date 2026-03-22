@@ -17,7 +17,7 @@ export const fetchNearbyPlaces = async (
   lat: number,
   lng: number,
   type: PlaceType,
-  radius = 5000
+  _radius = 5000
 ): Promise<NearbyPlace[]> => {
   // Use OpenStreetMap Nominatim search for amenities.
   const query = `${type}`;
@@ -30,14 +30,19 @@ export const fetchNearbyPlaces = async (
     extratags: 1,
     viewbox: `${lng - 0.1},${lat - 0.1},${lng + 0.1},${lat + 0.1}`,
   };
-  const { data } = await axios.get(url, { params, headers: { "User-Agent": "safehub/1.0" } });
-  return data.map((item: any) => ({
-    id: item.place_id,
-    name: item.display_name || item.name || type,
-    address: item.display_name,
-    lat: Number(item.lat),
-    lng: Number(item.lon),
+  const { data } = await axios.get<unknown[]>(url, { params, headers: { "User-Agent": "safehub/1.0" } });
+  return (Array.isArray(data) ? data : []).map((item) => {
+    const i = item as Record<string, unknown>;
+    const extratags = (i.extratags as Record<string, unknown> | undefined) ?? undefined;
+    const phone = extratags?.phone ?? extratags?.contact_phone;
+    return {
+      id: String(i.place_id ?? ""),
+      name: String(i.display_name ?? i.name ?? type),
+      address: String(i.display_name ?? ""),
+      lat: Number(i.lat),
+      lng: Number(i.lon),
     type,
-    phone: item.extratags?.phone || item.extratags?.contact_phone,
-  }));
+      phone: phone ? String(phone) : undefined,
+    };
+  });
 };

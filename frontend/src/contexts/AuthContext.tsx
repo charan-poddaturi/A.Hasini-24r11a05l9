@@ -54,7 +54,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       });
 
       socketInstance.on("connect", () => {
-        socketInstance.emit("join", user?.id || "");
+        if (user?.id) socketInstance.emit("join", user.id);
+        if (user?.phone) socketInstance.emit("join", user.phone);
       });
 
       setSocket(socketInstance);

@@ -11,7 +11,7 @@ SafeHub is an emergency response platform that enables individuals to trigger SO
 - Emergency protocols (CPR, fire safety etc.)
 - Multilingual (English + Hindi)
 - Responsive mobile-first UI (React + Tailwind)
-- Real-time events with Socket.io
+- Real-time SOS Alerts & Donor Requests via Socket.io
 - Dockerized backend/frontend + MongoDB
 
 ## Quick Start (Local)
@@ -188,10 +188,12 @@ npm test
 docker-compose up -d --build
 ```
 
-### Cloud Deployment
-- Backend: Deploy to Heroku, Railway, or AWS ECS
-- Frontend: Deploy to Vercel, Netlify, or AWS S3+CloudFront
-- Database: MongoDB Atlas or AWS DocumentDB
+### Cloud Deployment (Recommended)
+Because SafeHub relies heavily on **Socket.io** for real-time emergency alerts (SOS triggers & Donor Requests), the backend requires a persistent server connection. 
+
+- **Frontend**: Deploy to **[Vercel](https://vercel.com/)** (Auto-detects Vite)
+- **Backend**: Deploy to **[Render](https://render.com/)** or **Railway** (Vercel's Serverless Functions *do not* support WebSockets).
+- **Database**: MongoDB Atlas Cluster
 
 ## Security Notes
 - JWT tokens expire in 7 days

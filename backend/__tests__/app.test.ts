@@ -1,5 +1,16 @@
 import request from "supertest";
 import app from "../src/app";
+import { connectDb, disconnectDb } from "../src/db";
+
+jest.setTimeout(60000); // allow up to 60s for in-memory MongoDB to start
+
+beforeAll(async () => {
+  await connectDb();
+});
+
+afterAll(async () => {
+  await disconnectDb();
+});
 
 describe("SafeHub API", () => {
   it("should respond at root", async () => {

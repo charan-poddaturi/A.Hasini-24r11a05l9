@@ -13,8 +13,9 @@ export const getProfile = async () => {
   return data;
 };
 
+// Backend returns the full updated contacts array after adding a contact.
 export const addContact = async (contact: { name: string; relation: string; phone: string }) => {
-  const { data } = await api.post<EmergencyContact>("/users/emergency-contacts", contact);
+  const { data } = await api.post<EmergencyContact[]>("/users/emergency-contacts", contact);
   return data;
 };
 

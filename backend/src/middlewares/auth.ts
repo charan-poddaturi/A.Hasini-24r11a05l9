@@ -4,7 +4,7 @@ import { config } from "../config";
 import { User } from "../models/User";
 
 export interface AuthRequest extends Request {
-  user?: { _id: string; role: string };
+  user?: { _id: string; role: "user" | "admin" };
 }
 
 export const authenticate = async (
@@ -21,13 +21,13 @@ export const authenticate = async (
   try {
     const decoded = jwt.verify(token, config.jwtSecret) as {
       id: string;
-      role: string;
+      role: "user" | "admin";
     };
     const user = await User.findById(decoded.id).select("-_id role");
     if (!user) {
       return res.status(401).json({ message: "Unauthorized" });
     }
-    req.user = { _id: decoded.id, role: decoded.role } as any;
+    req.user = { _id: decoded.id, role: decoded.role };
     next();
   } catch (err) {
     return res.status(401).json({ message: "Unauthorized" });
@@ -39,7 +39,7 @@ export const authorize = (roles: Array<"admin" | "user">) => {
     if (!req.user) {
       return res.status(401).json({ message: "Unauthorized" });
     }
-    if (!roles.includes(req.user.role as any)) {
+    if (!roles.includes(req.user.role)) {
       return res.status(403).json({ message: "Forbidden" });
     }
     next();

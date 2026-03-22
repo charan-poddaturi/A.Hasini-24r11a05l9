@@ -1,13 +1,19 @@
 import { Request, Response, NextFunction } from "express";
 
+type HttpErrorLike = {
+  status?: number;
+  message?: string;
+};
+
 export const errorHandler = (
-  err: any,
+  err: unknown,
   req: Request,
   res: Response,
-  next: NextFunction
+  _next: NextFunction
 ) => {
   console.error(err);
-  const status = err.status || 500;
-  const message = err.message || "Internal Server Error";
+  const e = err as HttpErrorLike;
+  const status = e.status || 500;
+  const message = e.message || "Internal Server Error";
   res.status(status).json({ message });
 };
