@@ -3,7 +3,7 @@ import app from "./app";
 import { connectDb } from "./db";
 import { config } from "./config";
 import { Server as SocketIOServer } from "socket.io";
-import { log } from "./utils/logger";
+
 
 const server = http.createServer(app);
 const io = new SocketIOServer(server, {
@@ -18,25 +18,25 @@ const io = new SocketIOServer(server, {
 app.locals.io = io;
 
 io.on("connection", (socket) => {
-  log.info("Socket connected", socket.id);
+  console.log("Socket connected", socket.id);
 
   socket.on("join", (room) => {
     socket.join(room);
   });
 
   socket.on("disconnect", () => {
-    log.info("Socket disconnected", socket.id);
+    console.log("Socket disconnected", socket.id);
   });
 });
 
 const start = async () => {
   await connectDb();
   server.listen(config.port, () => {
-    log.info(`🚀 Server listening on http://localhost:${config.port}`);
+    console.log(`🚀 Server listening on http://localhost:${config.port}`);
   });
 };
 
 start().catch((e) => {
-  log.error(e);
+  console.error(e);
   process.exit(1);
 });

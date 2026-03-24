@@ -1,0 +1,162 @@
+:root {
+  --primary: #0f172a;
+  --accent: #2563eb;
+  --danger: #ef4444;
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --text: #334155;
+  --border: #e2e8f0;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Auth Cards */
+.auth-card {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 30px;
+  background: var(--surface);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.auth-card h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+/* Buttons */
+.btn {
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  background: var(--accent);
+  color: white;
+  width: 100%;
+  text-decoration: none;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+.btn-danger {
+  background: var(--danger);
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--surface);
+  padding: 15px 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+.navbar .brand {
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: none;
+  color: var(--primary);
+}
+
+.nav-links a {
+  margin-left: 15px;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+/* Cards */
+.card {
+  background: var(--surface);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+}
+
+.card h2 {
+  margin-bottom: 10px;
+}
+
+/* SOS Button */
+.sos-button {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%;
+  background-color: var(--danger);
+  color: white;
+  font-size: 32px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 40px auto;
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+}
+
+.sos-button:hover {
+  background-color: #dc2626;
+}
+
+/* Lists */
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.hidden {
+  display: none !important;
+}

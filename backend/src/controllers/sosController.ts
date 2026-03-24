@@ -3,7 +3,6 @@ import { AuthRequest } from "../middlewares/auth";
 import { SOSAlert } from "../models/SOSAlert";
 import { User } from "../models/User";
 import { sendSms } from "../services/notificationService";
-import { log } from "../utils/logger";
 
 type SocketServerLike = {
   to: (room: string) => { emit: (event: string, payload: unknown) => void };
@@ -52,7 +51,7 @@ export const triggerSOS = async (req: AuthRequest, res: Response, next: NextFunc
       await sendSms(contact.phone, message);
     }
 
-    log.info("SOS triggered", { userId, location: { lat, lng } });
+    console.log("SOS triggered", { userId, location: { lat, lng } });
     res.status(201).json({ alert });
   } catch (err) {
     next(err);

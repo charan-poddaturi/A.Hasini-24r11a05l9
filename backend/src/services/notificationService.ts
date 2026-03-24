@@ -1,5 +1,5 @@
 import { config } from "../config";
-import { log } from "../utils/logger";
+
 import axios from "axios";
 
 const hasTwilio = Boolean(
@@ -8,7 +8,7 @@ const hasTwilio = Boolean(
 
 export const sendSms = async (to: string, message: string) => {
   if (!hasTwilio) {
-    log.info("Twilio not configured, skipping SMS", { to, message });
+    console.log("Twilio not configured, skipping SMS", { to, message });
     return;
   }
 
@@ -27,8 +27,8 @@ export const sendSms = async (to: string, message: string) => {
       },
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
     });
-    log.info("SMS sent", { to });
+    console.log("SMS sent", { to });
   } catch (error) {
-    log.error("Failed to send SMS", error);
+    console.error("Failed to send SMS", error);
   }
 };

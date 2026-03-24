@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeHub - Dashboard</title>
+  <link rel="stylesheet" href="css/style.css">
+  <!-- Load Socket.io client -->
+  <script src="https://cdn.socket.io/4.7.2/socket.io.js"></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="dashboard.html" class="brand">SafeHub</a>
+    <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="contacts.html">Contacts</a>
+      <a href="map.html">Map</a>
+      <a href="donors.html">Donors</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="card">
+      <h2>Welcome to SafeHub</h2>
+      <p>Use the SOS button below in case of an emergency. Your emergency contacts will be notified.</p>
+    </div>
+
+    <div class="card" style="text-align: center;">
+      <button class="sos-button" id="sosBtn" onclick="triggerSOS()">SOS</button>
+      <p id="sosStatus" class="loading"></p>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>

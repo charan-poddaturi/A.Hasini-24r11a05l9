@@ -12,36 +12,17 @@ SafeHub is an emergency response platform that enables individuals to trigger SO
 - Multilingual (English + Hindi)
 - Responsive mobile-first UI (React + Tailwind)
 - Real-time SOS Alerts & Donor Requests via Socket.io
-- Dockerized backend/frontend + MongoDB
 
 ## Quick Start (Local)
 
 ### Prerequisites
 - Node.js 18+ / npm
-- Docker (optional, for docker-compose)
-- MongoDB (local or Docker)
+- MongoDB (local installation)
 
-### Option 1: Run with Docker Compose (Recommended)
-
-```bash
-# Start all services (MongoDB, backend, frontend)
-docker-compose up --build
-
-# Seed the database (in another terminal)
-docker-compose exec backend npm run seed
-
-# Open http://localhost:5173
-```
-
-### Option 2: Run Locally
+### Running the Project Locally
 
 #### Start MongoDB
-```bash
-# Using Docker
-docker run -d -p 27017:27017 --name mongodb mongo:6.0
-
-# Or install MongoDB locally and start it
-```
+Make sure your local MongoDB instance is running on port 27017.
 
 #### Backend
 ```bash
@@ -130,7 +111,6 @@ safehub/
 │   │   ├── middlewares/     # Auth, rate limiting
 │   │   ├── utils/           # Helpers
 │   │   └── scripts/         # Database seeding
-│   ├── __tests__/           # Unit tests
 │   └── package.json
 ├── frontend/                # React + TypeScript UI
 │   ├── src/
@@ -141,7 +121,6 @@ safehub/
 │   │   ├── hooks/           # Custom hooks
 │   │   └── i18n/            # Internationalization
 │   └── package.json
-├── docker-compose.yml       # Docker orchestration
 └── README.md
 ```
 
@@ -153,8 +132,6 @@ cd backend
 npm run dev      # Development with hot reload
 npm run build    # Build for production
 npm run start    # Run production build
-npm run test     # Run tests
-npm run lint     # Lint code
 ```
 
 ### Frontend
@@ -167,12 +144,6 @@ npm run preview  # Preview production build
 
 ## Testing
 
-### Backend Tests
-```bash
-cd backend
-npm test
-```
-
 ### Manual Testing
 1. Register a new user
 2. Add emergency contacts
@@ -180,20 +151,6 @@ npm test
 4. Search for nearby places
 5. Register as donor and search donors
 6. Switch language in settings
-
-## Deployment
-
-### Docker
-```bash
-docker-compose up -d --build
-```
-
-### Cloud Deployment (Recommended)
-Because SafeHub relies heavily on **Socket.io** for real-time emergency alerts (SOS triggers & Donor Requests), the backend requires a persistent server connection. 
-
-- **Frontend**: Deploy to **[Vercel](https://vercel.com/)** (Auto-detects Vite)
-- **Backend**: Deploy to **[Render](https://render.com/)** or **Railway** (Vercel's Serverless Functions *do not* support WebSockets).
-- **Database**: MongoDB Atlas Cluster
 
 ## Security Notes
 - JWT tokens expire in 7 days

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeHub - Contacts</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="dashboard.html" class="brand">SafeHub</a>
+    <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="contacts.html">Contacts</a>
+      <a href="map.html">Map</a>
+      <a href="donors.html">Donors</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="card">
+      <h1 style="margin-bottom: 20px;">Emergency Contacts</h1>
+      
+      <div id="contactsList" style="margin-bottom: 20px;">
+        <p>Loading contacts...</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-bottom: 15px;">Add New Contact</h2>
+      <form id="addContactForm" style="display: flex; gap: 10px; align-items: flex-end;">
+        <div class="form-group" style="margin: 0; flex: 1;">
+          <input type="text" id="contactName" placeholder="Name" required />
+        </div>
+        <div class="form-group" style="margin: 0; flex: 1;">
+          <input type="text" id="contactRelation" placeholder="Relation (e.g. Father)" required />
+        </div>
+        <div class="form-group" style="margin: 0; flex: 1;">
+          <input type="text" id="contactPhone" placeholder="Phone Number" required />
+        </div>
+        <button type="submit" class="btn" style="width: 100px; height: 42px;">Add</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/contacts.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeHub - Map</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="dashboard.html" class="brand">SafeHub</a>
+    <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="contacts.html">Contacts</a>
+      <a href="map.html">Map</a>
+      <a href="donors.html">Donors</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
+      <h2 style="margin: 0;">Nearby Services Map</h2>
+      <div>
+        <label for="categoryFilter">Find: </label>
+        <select id="categoryFilter" onchange="fetchNearby()">
+          <option value="hospital">Hospitals</option>
+          <option value="police">Police Stations</option>
+          <option value="fire">Fire Stations</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="card">
+      <div id="map" style="height: 500px; width: 100%; border-radius: 8px;"></div>
+      <p id="mapStatus" style="margin-top: 10px; color: #666;">Locating you...</p>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/map.js"></script>
+</body>
+</html>

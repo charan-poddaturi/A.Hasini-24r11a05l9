@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SafeHub - Donors</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="dashboard.html" class="brand">SafeHub</a>
+    <div class="nav-links">
+      <a href="dashboard.html">Dashboard</a>
+      <a href="contacts.html">Contacts</a>
+      <a href="map.html">Map</a>
+      <a href="donors.html">Donors</a>
+      <a href="#" onclick="logout()">Logout</a>
+    </div>
+  </nav>
+
+  <div class="container">
+    <div class="card" style="display: flex; justify-content: space-between; align-items: center;">
+      <h1 style="margin: 0;">Blood Donors API</h1>
+      <button class="btn" style="width: auto;" onclick="registerAsDonor()">Register as Donor</button>
+    </div>
+
+    <div class="card">
+      <h2 style="margin-bottom: 15px;">Search Donors</h2>
+      <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+        <input type="text" id="bloodType" placeholder="Blood Type (e.g. O+)" style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+        <input type="text" id="city" placeholder="City" style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 4px;">
+        <button class="btn" style="width: 100px;" onclick="searchDonors()">Search</button>
+      </div>
+      
+      <p id="searchStatus" style="font-size: 14px; color: #666;"></p>
+
+      <div id="donorsList" style="margin-top: 20px;">
+        <!-- Dynamic list will render here -->
+      </div>
+    </div>
+  </div>
+
+  <script src="js/api.js"></script>
+  <script src="js/donors.js"></script>
+</body>
+</html>
